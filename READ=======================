@@ -1,0 +1,3 @@
+[main fa21402] [Feature]: adding setenv function and fix error messages
+ 2 files changed, 32 insertions(+), 3 deletions(-)
+ create mode 100644 exit_shell.c
