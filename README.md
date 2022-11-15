@@ -1,7 +1,9 @@
-Simple shell 0.2 +
+Simple shell 0.3 +
 
 
 
-Handle the PATH
+Implement the exit built-in, that exits the shell
 
-fork must not be called if the command doesn’t exist
+Usage: exit
+
+You don’t have to handle any argument to the built-in exit
