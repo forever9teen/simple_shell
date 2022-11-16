@@ -1,11 +1,13 @@
 #include "shell.h"
+
 /**
- * * copy_info - copies info to create
+ * copy_info - copies info to create
  * a new env or alias
- * * @name: name (env or alias)
- * * @value: value (env or alias)
- *  * Return: new env or alias.
- *   **/
+ * @name: name (env or alias)
+ * @value: value (env or alias)
+ *
+ * Return: new env or alias.
+ */
 char *copy_info(char *name, char *value)
 {
 	char *new;
@@ -22,13 +24,15 @@ char *copy_info(char *name, char *value)
 
 	return (new);
 }
+
 /**
- * * set_env - sets an environment variable
- * * @name: name of the environment variable
- * * @value: value of the environment variable
- *  * @datash: data structure (environ)
- *  * Return: no return
- *  **/
+ * set_env - sets an environment variable
+ *
+ * @name: name of the environment variable
+ * @value: value of the environment variable
+ * @datash: data structure (environ)
+ * Return: no return
+ */
 void set_env(char *name, char *value, data_shell *datash)
 {
 	int i;
@@ -44,19 +48,43 @@ void set_env(char *name, char *value, data_shell *datash)
 			datash->_environ[i] = copy_info(name_env, value);
 			free(var_env);
 			return;
-
 		}
 		free(var_env);
 	}
+
 	datash->_environ = _reallocdp(datash->_environ, i, sizeof(char *) * (i + 2));
 	datash->_environ[i] = copy_info(name, value);
 	datash->_environ[i + 1] = NULL;
 }
+
 /**
- *  * _unsetenv - deletes a environment variable
- *  * @datash: data relevant (env name)
- *   * Return: 1 on success.
- *   **/
+ * _setenv - compares env variables names
+ * with the name passed.
+ * @datash: data relevant (env name and env value)
+ *
+ * Return: 1 on success.
+ */
+int _setenv(data_shell *datash)
+{
+
+	if (datash->args[1] == NULL || datash->args[2] == NULL)
+	{
+		get_error(datash, -1);
+		return (1);
+	}
+
+	set_env(datash->args[1], datash->args[2], datash);
+
+	return (1);
+}
+
+/**
+ * _unsetenv - deletes a environment variable
+ *
+ * @datash: data relevant (env name)
+ *
+ * Return: 1 on success.
+ */
 int _unsetenv(data_shell *datash)
 {
 	char **realloc_environ;
