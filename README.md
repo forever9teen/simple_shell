@@ -1,1 +1,1 @@
-strong 
+believe in learning
