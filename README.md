@@ -1,1 +1,1 @@
-commitment
+strong 
